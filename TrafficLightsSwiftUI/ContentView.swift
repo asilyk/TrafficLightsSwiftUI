@@ -39,9 +39,8 @@ struct ContentView: View {
             Text(buttonText)
                 .foregroundColor(.white)
                 .font(.largeTitle)
-                .fontWeight(.semibold)
-                .padding(.horizontal, 40)
-                .padding(.vertical, 8)
+                .fontWeight(.bold)
+                .frame(width: 200, height: 60)
                 .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth: 8))
         }
         .background(Color.accentColor)
