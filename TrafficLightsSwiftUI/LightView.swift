@@ -9,8 +9,7 @@ import SwiftUI
 
 struct LightView: View {
     let color: Color
-
-    @Binding var opacity: Double
+    let opacity: Double
 
     var body: some View {
         Circle()
@@ -23,6 +22,6 @@ struct LightView: View {
 
 struct LightView_Previews: PreviewProvider {
     static var previews: some View {
-        LightView(color: .green, opacity: .constant(0.3))
+        LightView(color: .green, opacity: 1)
     }
 }

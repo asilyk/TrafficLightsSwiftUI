@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    let lightIsOn = 1.0
-    let lightIsOff = 0.3
+    @State private var whichLightIsOn = WhichLightIsOn.none
 
-    @State var whichLightIsOn = WhichLightIsOn.none
+    @State  private var greenOpacity = 0.3
+    @State private var yellowOpacity = 0.3
+    @State private var redOpacity = 0.3
 
-    @State var greenOpacity = 0.3
-    @State var yellowOpacity = 0.3
-    @State var redOpacity = 0.3
-
-    @State var buttonText = "START"
+    @State private var buttonText = "START"
 
     var body: some View {
         ZStack {
             Color(.black)
                 .ignoresSafeArea()
+
             VStack(spacing: 16) {
-                LightView(color: .green, opacity: $greenOpacity)
-                LightView(color: .yellow, opacity: $yellowOpacity)
-                LightView(color: .red, opacity: $redOpacity)
+                LightView(color: .green, opacity: greenOpacity)
+                LightView(color: .yellow, opacity: yellowOpacity)
+                LightView(color: .red, opacity: redOpacity)
+
                 Spacer()
+
                 switchButton
             }
             .padding(.vertical, 32)
@@ -40,14 +40,20 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .font(.largeTitle)
                 .fontWeight(.bold)
-                .frame(width: 200, height: 60)
-                .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.white, lineWidth: 8))
         }
+        .frame(width: 200, height: 60)
+        .overlay(
+            RoundedRectangle(cornerRadius: 25)
+                .stroke(Color.white, lineWidth: 8)
+        )
         .background(Color.accentColor)
         .cornerRadius(25)
     }
 
     private func switchLight() {
+        let lightIsOn = 1.0
+        let lightIsOff = 0.3
+
         switch whichLightIsOn {
         case .green:
             greenOpacity = lightIsOff
